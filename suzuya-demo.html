@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>焼きそば 鈴や｜宇都宮駅東口 徒歩3分</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yuji+Boku&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F3EC;
+    --card:#EDE8DB;
+    --ink:#221F1A;
+    --accent-light:#F5F4F0;
+    --accent-dark:#111111;
+    --line: rgba(34,31,26,0.13);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.mincho{
+    font-family:'Yuji Boku', serif;
+    font-weight:400;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  /* overlay nav on hero photo */
+  nav{
+    position:absolute; top:0; left:0; right:0; z-index:20;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:26px 6vw;
+    color:#fff;
+  }
+  .brand{
+    font-family:'Yuji Boku', serif; font-size:23px; font-weight:400; letter-spacing:.04em;
+  }
+  .brand small{
+    display:block; font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:10px; letter-spacing:.2em; color:rgba(255,255,255,0.75); font-weight:700;
+  }
+  .navlinks{display:flex; gap:22px; font-size:13px; font-weight:700;}
+  .navlinks a{text-decoration:none; opacity:.85; color:#fff;}
+  .navlinks a:hover{opacity:1;}
+  @media(max-width:640px){ .navlinks{display:none;} }
+
+  /* HERO — full-bleed photo */
+  .hero{
+    position:relative;
+    height:100svh; min-height:560px;
+    overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.35) 0%, rgba(10,10,10,0.05) 30%, rgba(10,10,10,0.15) 55%, rgba(8,8,8,0.88) 100%),
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 16px),
+      radial-gradient(ellipse at 30% 20%, #3a3a3a 0%, #1c1c1c 45%, #0c0c0c 100%);
+    display:flex; flex-direction:column; justify-content:flex-end;
+  }
+  .hero-video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0;
+  }
+  .hero-photo-note{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:12px; color:rgba(255,255,255,0.45); text-align:center; z-index:1;
+    border:1px dashed rgba(255,255,255,0.22); margin:70px 5vw 0;
+  }
+  .hero-photo-note .icon{font-size:30px;}
+  .hero-photo-note b{font-size:13px; letter-spacing:.06em; color:rgba(255,255,255,0.6);}
+  .hero-photo-note span{font-size:11.5px; line-height:1.7; max-width:32ch;}
+
+  .hero-bottom{
+    position:relative; z-index:2;
+    padding:0 6vw 44px;
+    color:#fff;
+  }
+  .hero-eyebrow{
+    font-size:12px; font-weight:700; letter-spacing:.22em;
+    color:rgba(255,255,255,0.7); margin-bottom:16px;
+  }
+  .hero h1{
+    font-size:clamp(32px,5.4vw,56px);
+    line-height:1.5;
+    font-weight:400;
+    margin:0 0 22px;
+    max-width:14ch;
+  }
+  .hero h1 em{ font-style:normal; color:#fff; border-bottom:3px solid rgba(255,255,255,0.85); padding-bottom:2px; }
+  .hero-badges{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:26px; }
+  .hero-badges span{
+    display:inline-flex; align-items:center; gap:6px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.3);
+    backdrop-filter:blur(6px);
+    border-radius:999px; padding:7px 16px; font-size:12.5px; font-weight:600;
+  }
+  .hero-badges b{color:#fff; font-weight:800;}
+  .cta-row{display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 26px; border-radius:2px;
+    font-weight:700; font-size:13.5px; text-decoration:none;
+    border:1.5px solid #fff;
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn-primary{background:#fff; color:var(--ink);}
+  .btn-primary:hover{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .btn-ghost{color:#fff;}
+  .btn-ghost:hover{background:#fff; color:var(--ink);}
+  .scroll-cue{
+    position:absolute; right:6vw; bottom:24px; z-index:2;
+    writing-mode:vertical-rl; color:rgba(255,255,255,0.55); font-size:11px; letter-spacing:.15em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .scroll-cue::after{ content:""; width:1px; height:34px; background:rgba(255,255,255,0.4); }
+  @media(max-width:640px){ .scroll-cue{display:none;} }
+
+  .eyebrow{
+    font-size:12px; font-weight:700; letter-spacing:.22em;
+    color:rgba(17,17,17,0.6); margin-bottom:20px;
+  }
+
+  section{padding:70px 6vw;}
+  .section-head{max-width:640px; margin:0 auto 46px; text-align:center;}
+  .section-head .eyebrow{margin:0 auto 14px;}
+  .section-head h2{font-size:clamp(28px,3.6vw,42px); margin:0 0 14px; font-weight:400;}
+  .section-head p{color:#4a4034; font-size:14.5px; line-height:1.9;}
+
+  /* story */
+  .story{background:var(--ink); color:var(--cream);}
+  .story .section-head p{color:#c9beac;}
+  .story .eyebrow{color:rgba(255,255,255,0.65);}
+  .story-grid{
+    max-width:920px; margin:0 auto; display:grid; grid-template-columns: auto 1fr; gap:0 34px;
+  }
+  .story-item{display:contents;}
+  .story-year{
+    font-family:'Zen Kaku Gothic New',sans-serif; font-size:15px; font-weight:800; color:#fff;
+    padding:20px 0; white-space:nowrap;
+  }
+  .story-text{
+    padding:20px 0; border-top:1px solid rgba(245,239,225,0.14); font-size:14px; line-height:1.85; color:#e3dccb;
+  }
+  .story-item:first-child .story-text, .story-item:first-child .story-year{border-top:none;}
+
+  /* menu */
+  .menu-grid{
+    max-width:980px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:22px;
+  }
+  .menu-card{
+    background:var(--card); border-radius:10px; padding:26px 24px;
+    border:1px solid var(--line);
+  }
+  .menu-card .tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:.08em;
+    background:var(--ink); color:#fff; padding:3px 10px; border-radius:4px; margin-bottom:14px;
+  }
+  .menu-card h3{margin:0 0 8px; font-size:19px;}
+  .menu-card .price{font-size:26px; font-weight:800; color:var(--ink); font-family:'Zen Kaku Gothic New',sans-serif;}
+  .menu-card .price small{font-size:13px; font-weight:500; color:#6b5f4e;}
+  .menu-card p{font-size:13px; color:#5a4f3e; line-height:1.7; margin-top:10px;}
+
+  /* access / takeout */
+  .split{
+    max-width:1080px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:40px;
+  }
+  @media(max-width:820px){ .split{grid-template-columns:1fr;} }
+  .panel{
+    background:var(--card); border-radius:12px; padding:34px 30px; border:1px solid var(--line);
+  }
+  .panel h3{font-size:20px; margin:0 0 16px;}
+  .badge-lg{
+    display:inline-flex; align-items:baseline; gap:8px; background:var(--ink); color:var(--cream);
+    padding:10px 18px; border-radius:8px; margin-bottom:18px;
+  }
+  .badge-lg .num{font-family:'Zen Kaku Gothic New',sans-serif; font-size:26px; font-weight:800; color:#fff;}
+  dl.info{font-size:13.5px; line-height:2.1; color:#4a4034;}
+  dl.info dt{font-weight:700; color:var(--ink); float:left; width:5.5em;}
+  dl.info dd{margin:0 0 0 5.5em;}
+
+  .takeout-steps{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .takeout-steps li{
+    display:flex; gap:14px; align-items:flex-start; font-size:13.5px; line-height:1.8; color:#4a4034;
+  }
+  .step-n{
+    flex:none; width:26px; height:26px; border-radius:50%; background:var(--ink); color:#fff;
+    font-size:12px; font-weight:800; display:flex; align-items:center; justify-content:center;
+  }
+  .note-soon{
+    margin-top:20px; padding:12px 14px; border-radius:8px; background:rgba(17,17,17,0.05);
+    border:1px dashed rgba(17,17,17,0.35); font-size:12.5px; color:rgba(17,17,17,0.7);
+  }
+
+  /* reviews */
+  .review-grid{max-width:980px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:20px;}
+  .review-card{background:var(--cream); border:1px solid var(--line); border-radius:10px; padding:22px;}
+  .stars{color:var(--ink); font-size:14px; margin-bottom:10px; letter-spacing:2px;}
+  .review-card p{font-size:13.5px; line-height:1.8; color:#4a4034; margin:0;}
+  .review-card .who{margin-top:12px; font-size:11.5px; color:#8a7d68; font-weight:700;}
+
+  footer{
+    background:var(--ink); color:#c9beac; padding:44px 6vw 30px; text-align:center; font-size:12.5px;
+  }
+  footer .brand2{font-family:'Shippori Mincho B1',serif; color:var(--cream); font-size:19px; margin-bottom:10px;}
+  footer .fnote{margin-top:18px; opacity:.6; font-size:11px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">焼きそば 鈴や</div>
+</nav>
+
+<section class="hero">
+  <!-- 動画を使う場合はここに差し込み： -->
+  <!-- <video class="hero-video" autoplay muted loop playsinline poster="poster.jpg"><source src="yakisoba.mp4" type="video/mp4"></video> -->
+  <div class="hero-photo-note">
+    <div class="icon">🎬</div>
+    <b>ここに写真 or 10秒ループ動画を全面表示</b>
+    <span>湯気の立つ焼きそば・鉄板でヘラを動かす様子など、明日撮った素材をそのまま差し込めます</span>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-eyebrow">地元の人が、今日もふらっと立ち寄る店</div>
+    <h1>駅から3分、<em>45年</em>変わらぬ味。</h1>
+    <div class="hero-badges">
+      <span>宇都宮駅東口 <b>徒歩3分</b></span>
+      <span><b>テイクアウトOK</b></span>
+      <span>創業 <b>昭和55年</b></span>
+    </div>
+    <div class="cta-row">
+      <a href="#takeout" class="btn btn-primary">テイクアウトのご案内</a>
+      <a href="#access" class="btn btn-ghost">アクセスを見る</a>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="section-head">
+    <div class="eyebrow">OUR STORY</div>
+    <h2 class="mincho">駅前で、地元と45年</h2>
+    <p>大きな一軒の歴史というより、日々の食卓とともにあった時間です。</p>
+  </div>
+  <div class="story-grid">
+    <div class="story-item">
+      <div class="story-year">1980</div>
+      <div class="story-text">宇都宮駅東口にほど近い場所で創業。鉄板一枚から始まった、地元の食堂としての歴史がスタートしました。</div>
+    </div>
+    <div class="story-item">
+      <div class="story-year">今も</div>
+      <div class="story-text">駅からの帰り道に立ち寄る常連さん、テイクアウトで家族の食卓に持ち帰る方まで。世代を超えて通っていただいています。</div>
+    </div>
+    <div class="story-item">
+      <div class="story-year">これから</div>
+      <div class="story-text">変わらない味はそのままに、テイクアウトやネット注文など、今の暮らし方に合わせた形も少しずつ整えています。</div>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="section-head">
+    <div class="eyebrow">MENU</div>
+    <h2 class="mincho">もちもち太麺の、宇都宮焼きそば</h2>
+    <p>ソースは後がけスタイル。お好みの濃さに調整してお楽しみください。</p>
+  </div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <span class="tag">定番</span>
+      <h3>やきそば</h3>
+      <div class="price">¥500<small>（並・税込）</small></div>
+      <p>大盛¥650／特盛¥800。キャベツと青のり、紅生姜のシンプルな一皿。</p>
+    </div>
+    <div class="menu-card">
+      <span class="tag">看板</span>
+      <h3>目玉やきそば</h3>
+      <div class="price">¥550<small>（並・税込）</small></div>
+      <p>大盛¥700／特盛¥850。半熟の目玉焼きをのせた、鈴やの定番。</p>
+    </div>
+    <div class="menu-card">
+      <span class="tag">ボリューム</span>
+      <h3>肉目玉やきそば</h3>
+      <div class="price">¥700<small>（並・税込）</small></div>
+      <p>大盛¥850／特盛¥1,000。お肉と目玉焼きで食べ応え満点。</p>
+    </div>
+    <div class="menu-card">
+      <span class="tag">人気</span>
+      <h3>ミックスやきそば</h3>
+      <div class="price">¥750<small>（並・税込）</small></div>
+      <p>大盛¥900／特盛¥1,050。ハム・肉・目玉焼きが全部のった一皿。</p>
+    </div>
+    <div class="menu-card">
+      <span class="tag">宴会</span>
+      <h3>パーティーサイズ</h3>
+      <div class="price">¥1,500<small>（3〜4人前・税込）</small></div>
+      <p>みんなでシェアできる大皿サイズ。ご宴会・パーティーに。</p>
+    </div>
+    <div class="menu-card">
+      <span class="tag">定食</span>
+      <h3>定食（ライス・みそ汁）</h3>
+      <div class="price">¥250<small>（税込）</small></div>
+      <p>やきそばと一緒に。半ライス¥120・おにぎり¥180も。</p>
+    </div>
+  </div>
+</section>
+
+<section id="access" style="background:var(--card);">
+  <div class="split">
+    <div class="panel">
+      <div class="badge-lg"><span class="num">3</span>分</div>
+      <h3 class="mincho">宇都宮駅東口から徒歩3分</h3>
+      <dl class="info">
+        <dt>住所</dt><dd>栃木県宇都宮市東宿郷2-2-7</dd>
+        <dt>電話</dt><dd>028-637-2436</dd>
+        <dt>営業</dt><dd>昼11:00〜14:30（LO14:00）<br>夜17:00〜21:30（LO21:00）</dd>
+        <dt>定休</dt><dd>日曜・祝日</dd>
+      </dl>
+    </div>
+    <div class="panel" id="takeout">
+      <h3 class="mincho">テイクアウトのご案内</h3>
+      <ul class="takeout-steps">
+        <li><span class="step-n">1</span>お電話（028-637-2436）でご注文・お受け取り時間をお伝えください</li>
+        <li><span class="step-n">2</span>店頭でお会計・お受け取り</li>
+        <li><span class="step-n">3</span>できたてを、ご自宅やオフィスで</li>
+      </ul>
+      <p style="font-size:12.5px; color:#6b5f4e; margin-top:16px; line-height:1.8;">やきそばおにぎりセット・やきそばチャーシューセット・やきそば豚丼セット 各¥750／唐揚げ(1個)¥150〜 など、お持ち帰り専用メニューもございます。</p>
+      <div class="note-soon">※ ネット注文（Uber Eats等）は準備中です。導入され次第こちらでご案内します。</div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="section-head">
+    <div class="eyebrow">VOICE</div>
+    <h2 class="mincho">お客様の声</h2>
+  </div>
+  <div class="review-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>駅からすぐなのに、しっかり老舗の味。出張のついでに寄れるのが嬉しいです。</p>
+      <div class="who">宇都宮駅ご利用の方</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p>子供の頃からずっとこの味。テイクアウトで家族の分もよく買います。</p>
+      <div class="who">地元の常連さん</div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>太麺ともちもち食感がクセになる。ワンコインで満足できるのが嬉しい。</p>
+      <div class="who">来店されたお客様</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="brand2">焼きそば 鈴や</div>
+  <div>宇都宮駅東口 徒歩3分・宇都宮焼きそば専門店</div>
+  <div class="fnote">※本サイトはデモ版です。実際の情報とは異なる場合があります。</div>
+</footer>
+
+</body>
+</html>
