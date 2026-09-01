@@ -419,6 +419,7 @@
     font-size:clamp(14px,2vw,17px);letter-spacing:.04em;
   }
   .mdate{font-size:11.5px;letter-spacing:.04em;color:rgba(22,19,15,.65);}
+  .mlogo{height:20px;width:auto;flex:none;}
 </style>
 <!-- 構造化データ：Google・AI検索に店舗情報を機械可読で伝える -->
 <script type="application/ld+json">
@@ -552,8 +553,14 @@
   <div class="wrap">
     <span class="mlabel">メディア掲載</span>
     <ul class="mlist">
-      <li><span class="mshow">TBS系「王様のブランチ」</span><span class="mdate">2023年2月4日 放送</span></li>
-      <li><span class="mshow">日本テレビ系「秘密のケンミンSHOW極」</span><span class="mdate">2026年10月15日 放送予定</span></li>
+      <li>
+        <img class="mlogo" src="images/logo-oujisama.webp" alt="王様のブランチ" width="296" height="120" loading="lazy" decoding="async">
+        <span class="mshow">TBS系「王様のブランチ」</span><span class="mdate">2023年2月4日 放送</span>
+      </li>
+      <li>
+        <img class="mlogo" src="images/logo-kenmin.webp" alt="秘密のケンミンSHOW極" width="273" height="120" loading="lazy" decoding="async">
+        <span class="mshow">日本テレビ系「秘密のケンミンSHOW極」</span><span class="mdate">2026年10月15日 放送予定</span>
+      </li>
     </ul>
   </div>
 </section>
