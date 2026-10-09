@@ -25,6 +25,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="preload" as="image" href="images/hero-yakisoba.webp" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
@@ -283,9 +284,16 @@
   .board td.span{text-align:right;}
   .board-note{font-size:13.5px;color:var(--muted);margin:14px 0 0;}
   @media(max-width:560px){
-    .board th,.board td{padding:10px 4px;}
-    .board tbody th{font-size:15px;white-space:normal;}
-    .board td{font-size:16.5px;}
+    .board table,.board thead,.board tbody,.board tr{display:block;}
+    .board thead{display:none;}
+    .board tbody tr{
+      display:flex;justify-content:space-between;align-items:baseline;
+      gap:12px;padding:11px 2px;border-bottom:1px solid var(--rule);
+    }
+    .board tbody tr:last-child{border-bottom:none;}
+    .board th,.board td{padding:0;border-bottom:none;}
+    .board tbody th{font-size:15px;white-space:normal;flex:1;}
+    .board td{font-size:17px;font-weight:700;white-space:nowrap;flex-shrink:0;}
     .board tbody tr.is-signature th::after{display:inline-block;margin:0 0 0 8px;}
   }
 
